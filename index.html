@@ -38,7 +38,45 @@
     #estado {
       color: #a9d7c3;
     }
-  </style>
+  .leyenda-hipsometrica {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+  width: 270px;
+  max-width: calc(100vw - 40px);
+  box-sizing: border-box;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(12, 25, 38, 0.90);
+  color: white;
+}
+.leyenda-hipsometrica h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+}
+.barra-elevacion {
+  height: 18px;
+  border-radius: 5px;
+  background: linear-gradient(to right,
+    rgb(40,107,69) 0%,
+    rgb(130,182,106) 25%,
+    rgb(232,215,108) 45%,
+    rgb(153,113,78) 70%,
+    rgb(242,240,232) 100%);
+}
+.valores-elevacion {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 13px;
+}
+.nota-elevacion {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #b9c9d3;
+}
+</style>
 </head>
 <body>
   <div class="panel">
@@ -51,5 +89,14 @@
   <div id="visor"></div>
 
   <script type="module" src="/src/main.js"></script>
+<aside id="leyenda-hipsometrica" class="leyenda-hipsometrica">
+  <h2>Elevación del terreno</h2>
+  <div class="barra-elevacion"></div>
+  <div class="valores-elevacion">
+    <span>2.451,57 m</span>
+    <span>4.148,38 m</span>
+  </div>
+  <p class="nota-elevacion">NASADEM | Resolución aproximada: 90 m</p>
+</aside>
 </body>
 </html>

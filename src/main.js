@@ -42,6 +42,7 @@ controles.enableDamping = true;
 controles.dampingFactor = 0.08;
 
 // Cargar terreno de Bogotá
+let superficieTerreno = null;
 const cargador = new GLTFLoader();
 
 estado.textContent = 'Cargando terreno 3D...';
@@ -51,6 +52,7 @@ cargador.load(
   (gltf) => {
     const terreno = gltf.scene;
     escena.add(terreno);
+    superficieTerreno = terreno;
 
     // Calcular dimensiones y centro del modelo
     const caja = new THREE.Box3().setFromObject(terreno);
@@ -80,6 +82,64 @@ cargador.load(
   }
 );
 
+
+// Consulta interactiva de elevacion
+const raycaster = new THREE.Raycaster();
+const posicionMouse = new THREE.Vector2();
+const etiquetaAltura = document.createElement('div');
+
+etiquetaAltura.style.cssText = `
+  position: fixed;
+  display: none;
+  pointer-events: none;
+  z-index: 100;
+  padding: 9px 13px;
+  background: rgba(12,25,38,0.94);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  font: 14px Arial, sans-serif;
+`;
+
+document.body.appendChild(etiquetaAltura);
+
+
+
+function consultarElevacion(evento) {
+  if (!superficieTerreno) return;
+
+  const rect = renderizador.domElement.getBoundingClientRect();
+
+  posicionMouse.x = ((evento.clientX - rect.left) / rect.width) * 2 - 1;
+  posicionMouse.y = -((evento.clientY - rect.top) / rect.height) * 2 + 1;
+
+  raycaster.setFromCamera(posicionMouse, camara);
+
+  const intersecciones = raycaster.intersectObject(superficieTerreno, true);
+
+  if (intersecciones.length > 0) {
+    const elevacion = intersecciones[0].point.y;
+
+    etiquetaAltura.textContent =
+      'Elevacion: ' +
+      elevacion.toLocaleString('es-CO', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + ' m';
+
+    etiquetaAltura.style.left = (evento.clientX + 15) + 'px';
+    etiquetaAltura.style.top = (evento.clientY + 15) + 'px';
+    etiquetaAltura.style.display = 'block';
+  } else {
+    etiquetaAltura.style.display = 'none';
+  }
+}
+
+renderizador.domElement.addEventListener('pointermove', consultarElevacion);
+
+renderizador.domElement.addEventListener('pointerleave', () => {
+  etiquetaAltura.style.display = 'none';
+});
 // Adaptar al tamaño de la ventana
 window.addEventListener('resize', () => {
   camara.aspect = window.innerWidth / window.innerHeight;
