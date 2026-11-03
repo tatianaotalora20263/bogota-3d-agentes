@@ -120,13 +120,20 @@ function consultarElevacion(evento) {
   if (intersecciones.length > 0) {
     const elevacion = intersecciones[0].point.y;
 
-    etiquetaAltura.textContent =
-      'Elevacion: ' +
-      elevacion.toLocaleString('es-CO', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }) + ' m';
+    const este = intersecciones[0].point.x + 4859829.112538762;
+    const norte = 2026133.7727856515 - intersecciones[0].point.z;
 
+    const formato = (valor) => valor.toLocaleString('es-CO', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    etiquetaAltura.innerHTML =
+      '<strong>Coordenadas del terreno</strong><br>' +
+      'Este: ' + formato(este) + ' m<br>' +
+      'Norte: ' + formato(norte) + ' m<br>' +
+      'Elevacion: ' + formato(elevacion) + ' m<br>' +
+      '<small>MAGNA-SIRGAS / EPSG:9377</small>';
     etiquetaAltura.style.left = (evento.clientX + 15) + 'px';
     etiquetaAltura.style.top = (evento.clientY + 15) + 'px';
     etiquetaAltura.style.display = 'block';
