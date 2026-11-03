@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bogotá 3D | Visor de terreno</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #101b28;
+      color: white;
+    }
+    #visor {
+      width: 100vw;
+      height: 100vh;
+    }
+    .panel {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      background: rgba(12, 25, 38, 0.88);
+      padding: 18px;
+      border-radius: 12px;
+      max-width: 320px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 22px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    #estado {
+      color: #a9d7c3;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>Bogotá D.C. en 3D</h1>
+    <p>Modelo digital del terreno NASADEM, resolución aproximada de 90 metros.</p>
+    <p>Arrastra para rotar y utiliza la rueda del mouse para acercar o alejar.</p>
+    <p id="estado">Preparando visor...</p>
+  </div>
+
+  <div id="visor"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+{
+  "source": "C:\\Users\\tatia\\Documents\\Bogota_3D_Agentes\\05_Blender\\DEM_Bogota_DC_EPSG9377_90m.tif",
+  "mesh": "C:\\Users\\tatia\\Documents\\Bogota_3D_Agentes\\05_Blender\\Bogota_Terreno_90m.ply",
+  "crs": "EPSG:9377",
+  "geotransform": [
+    4831569.112538762,
+    90.0,
+    0.0,
+    2090393.7727856515,
+    0.0,
+    -90.0
+  ],
+  "origin_epsg9377": [
+    4859829.112538762,
+    2026133.7727856515,
+    0
+  ],
+  "resolution_m": [
+    90.0,
+    90.0
+  ],
+  "raster_dimensions": [
+    628,
+    1428
+  ],
+  "nodata": -9999.0,
+  "valid_vertices": 204197,
+  "real_quads": 201937,
+  "elevation_min_m": 2451.570068359375,
+  "elevation_max_m": 4148.375,
+  "scale": "1 Blender unit = 1 meter",
+  "coordinate_recovery": {
+    "east": "Blender X + origin E0",
+    "north": "Blender Y + origin N0",
+    "elevation": "Blender Z"
+  },
+  "web_model": "Bogota_Terreno.glb",
+  "axis_mapping": {
+    "X": "Este",
+    "Y": "Elevacion",
+    "Z": "Norte negativo"
+  },
+  "glb_sha256": "f3969ecb33ce6f32420c9cce9ad90fb5d783dd09360422c6424159f3054b71ec",
+  "color_ramp": [
+    [
+      0.0,
+      [
+        40,
+        107,
+        69
+      ]
+    ],
+    [
+      0.25,
+      [
+        130,
+        182,
+        106
+      ]
+    ],
+    [
+      0.45,
+      [
+        232,
+        215,
+        108
+      ]
+    ],
+    [
+      0.7,
+      [
+        153,
+        113,
+        78
+      ]
+    ],
+    [
+      1.0,
+      [
+        242,
+        240,
+        232
+      ]
+    ]
+  ]
+}
